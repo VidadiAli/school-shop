@@ -1,0 +1,1 @@
+export const mainData = "https://deneme-2-0osa.onrender.com/";
