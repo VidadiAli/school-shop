@@ -1,1 +1,1 @@
-export const mainData = "https://deneme-2-0osa.onrender.com/";
+export const mainData = "https://us-central1-api-school-shop.cloudfunctions.net/app/";

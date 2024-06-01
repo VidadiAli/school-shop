@@ -3,6 +3,10 @@ import './AdminPanel.css'
 import axios from 'axios'
 import { mainData } from '../Data/data'
 import { IoMdCloseCircle } from "react-icons/io";
+import { menu } from '../Data/baza';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { imageDb } from '../uploadImage/Config';
+import { v4 } from 'uuid';
 
 
 
@@ -11,46 +15,65 @@ const AdminPanel = () => {
 
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
-    const [removeForm, setRemoveForm] = useState('')
+    const [removeForm, setRemoveForm] = useState('');
+    const [removeCreateForm, setCreateRemoveForm] = useState('');
     const [selectClass, setSelectClass] = useState('');
     const [addAdminArea, setAddAdminArea] = useState('')
-
-    const [menuData, setMenuData] = useState([]);
-    const [selectElement, setSelectElement] = useState('Dərs Ləvazimatları');
-    const [jsonUrl, setJsonUrl] = useState('dersLevazimatlari');
+    //const [selectElement, setSelectElement] = useState('Dərs Ləvazimatları');
+    const [jsonUrl, setJsonUrl] = useState('Levazimatlar');
+    const [imageUrl, setImageUrl] = useState();
 
 
     const callJson = (deyer) => {
-        menuData.forEach((element) => {
+        menu.forEach((element) => {
             if (element.nameOfElement === deyer) {
                 setJsonUrl(element.jsonFile);
-                setSelectElement(element.nameOfElement);
+                //setSelectElement(element.nameOfElement);
             }
         })
     }
 
 
-    const callMenu = async (url) => {
-        const arrayOfMenu = (await axios.get(url)).data;
-        setMenuData(arrayOfMenu);
-    }
-
-
 
     const callAccount = async () => {
-        const accountElements = (await axios.get(`${mainData}myAccount`)).data;
-        setUser(accountElements[0].userBaza);
-        setPassword(accountElements[0].passwordBaza);
+        const accountElements = (await axios.get(`${mainData}readAccount`)).data;
+        if (accountElements.length != 0) {
+            setUser(accountElements[0].user);
+            setPassword(accountElements[0].password);
+            setCreateRemoveForm('form-remove');
+        }
+        else {
+            setRemoveForm('form-remove');
+        }
     }
 
 
 
     useEffect(() => {
-        callMenu(`${mainData}menu`);
         callAccount();
         callJson();
     })
 
+
+    const createAccount = async () => {
+        const userId = document.getElementById('userCreatingId'),
+            passwordId = document.getElementById('passwordCreatingId');
+        if (userId.value.trim() != '' && passwordId.value.trim() != '') {
+            const updateElement = {
+                "id": "1",
+                "user": userId.value,
+                "password": passwordId.value
+            }
+
+            await axios.post(`${mainData}createAccount`, updateElement);
+
+            alert('Hesabınız uğurlar yaradıldı');
+            setCreateRemoveForm('form-remove');
+            setRemoveForm('');
+            userId.value = ''
+            passwordId.value = ''
+        }
+    }
 
 
     const enterAccount = () => {
@@ -59,7 +82,7 @@ const AdminPanel = () => {
             passwordId = document.getElementById('passwordId');
 
         if (user === userId.value.trim() && password === passwordId.value.trim()) {
-            setAddAdminArea('admin-area')
+            setAddAdminArea('admin-area');
             setRemoveForm('form-remove');
         }
         else {
@@ -69,38 +92,49 @@ const AdminPanel = () => {
     }
 
 
-
-    const callPostMetod = async (url, element) => {
-        await axios.post(url, element)
-    }
-
-
-
     const addElement = () => {
         setSelectClass('form-main');
     }
 
 
-
-    const callMenuSend = () => {
-
-        const menuSection = document.getElementById('section'), menuClass = document.getElementById('class'), menuElementName = document.getElementById('nameOfO'), menuPrice = document.getElementById('price'), menuCount = document.getElementById('count');
-
-
-        const element1 = {
-            "bolumunAdi": selectElement,
-            "bolum": menuSection.value,
-            "sinif": menuClass.value,
-            "elementinAdi": menuElementName.value,
-            "elementinQiymeti": menuPrice.value,
-            "elementinShekli": "dersLevazimatlari/1.jpg",
-            "say": menuCount.value
-        }
-
-        callPostMetod(`${mainData}${jsonUrl}`, element1);
-        setSelectClass('');
-
+    const uploadCover = (e) => {
+        const imgRef = ref(imageDb, `${jsonUrl}/${v4()}`);
+        uploadBytes(imgRef, e.target.files[0]).then((value) => {
+            getDownloadURL(value.ref).then((url) => {
+                setImageUrl(url);
+            })
+        })
     }
+
+
+    const callMenuSend = async () => {
+        if (imageUrl != 'undefined') {
+            const menuSection = document.getElementById('section'), menuClass = document.getElementById('class'), menuElementName = document.getElementById('nameOfO'), menuPrice = document.getElementById('price'), menuCount = document.getElementById('count');
+
+            if (menuSection.value.trim() != '' && menuClass.value.trim() != '' && menuElementName.value.trim() != '' && menuPrice.value.trim() != '' && menuCount.value.trim() != '') {
+                const element1 = {
+                    "id": imageUrl.slice(imageUrl.length - 36, imageUrl.length),
+                    "bolum": menuSection.value,
+                    "sinif": menuClass.value,
+                    "elementinAdi": menuElementName.value,
+                    "elementinQiymeti": menuPrice.value,
+                    "elementinShekli": imageUrl,
+                    "elementinSayi": menuCount.value
+                }
+
+                console.log(element1)
+                await axios.post(`${mainData}create${jsonUrl}`, element1);
+                setSelectClass('');
+            }
+            else {
+                alert("Məlumatları tam doldurun!");
+            }
+        }
+        else {
+            alert('Bir problem yaşandı "Əlavə et" düyməsinə yenidən klikləyin');
+        }
+    }
+
 
     const closeForm = () => {
         setSelectClass('');
@@ -110,11 +144,11 @@ const AdminPanel = () => {
     const changeAccountFromBaza = async (newUser, newParol) => {
         const updateElement = {
             "id": "1",
-            "userBaza": newUser,
-            "passwordBaza": newParol
+            "user": newUser,
+            "password": newParol
         }
 
-        await axios.put(`${mainData}myAccount/${1}`, updateElement);
+        await axios.put(`${mainData}updateAccount/1`, updateElement);
     }
 
 
@@ -164,6 +198,12 @@ const AdminPanel = () => {
                 <input type="button" value="Daxil ol" onClick={enterAccount} />
             </form>
 
+            <form className={`${removeCreateForm}`}>
+                <input type="text" placeholder='user: ' id='userCreatingId' />
+                <input type="password" placeholder='password: ' id='passwordCreatingId' />
+                <input type="button" value="user və parol yarat" onClick={createAccount} />
+            </form>
+
             <div className={`admin-area-remove ${addAdminArea}`} >
                 <h2>Xoş Gəldin: Elton Cabbarlı</h2>
                 <div>
@@ -180,8 +220,9 @@ const AdminPanel = () => {
                     <select onChange={(e) => {
                         callJson(e.target.value);
                     }}>
+                        <option value="choose">Menu seç</option>
                         {
-                            menuData && menuData.map((f) => (
+                            menu && menu.map((f) => (
                                 <option key={f.id} value={f.nameOfElement} option='true'>{f.nameOfElement}</option>
                             ))
                         }
@@ -190,6 +231,7 @@ const AdminPanel = () => {
                     <input type="text" placeholder='Sinfi qeyd et:' id='class' />
                     <input type="text" placeholder='Obyektin adını qeyd et:' id='nameOfO' />
                     <input type="text" placeholder='Obyektin qiymətini qeyd et:' id='price' />
+                    <input type="file" onChange={(e) => uploadCover(e)} />
                     <input type="text" placeholder='Obyektin sayını qeyd et:' id='count' />
                     <input type="button" value="Əlavə et" onClick={callMenuSend} />
                 </form>

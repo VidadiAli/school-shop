@@ -15,7 +15,7 @@ const MenuCompanentFirst = ({ menuObject }) => {
 
 
     useEffect(() => {
-        getData(`${mainData}${menuObject.jsonFile}`)
+        getData(`${mainData}read${menuObject.jsonFile}`)
     }, [])
 
     let pushBolum = [];
