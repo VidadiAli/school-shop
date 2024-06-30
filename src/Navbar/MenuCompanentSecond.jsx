@@ -1,10 +1,15 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const MenuCompanentSecond = ({ liText, arrayOfMenuChild }) => {
 
     let pushSinif = [];
 
+    const navigate = useNavigate()
+
+    const callNavigate = (e) => {
+        navigate(`/school-shop/${e.bolum}/${e.sinif}`);
+    }
 
     return (
         <li>
@@ -12,9 +17,9 @@ const MenuCompanentSecond = ({ liText, arrayOfMenuChild }) => {
             <ul>
                 {
                     arrayOfMenuChild && arrayOfMenuChild.map((e) => {
-                        if (!pushSinif.includes(e.sinif)) {
+                        if (!pushSinif.includes(e.sinif) && e.bolum === liText) {
                             pushSinif.push(e.sinif)
-                            return < li key={e.id} > <NavLink to={'/school-shop/MyClass'}>{e.sinif}</NavLink></li>
+                            return < li key={e.id} > <a onClick={() => callNavigate(e)}>{e.sinif}</a></li>
                         }
                     })
                 }
@@ -23,4 +28,4 @@ const MenuCompanentSecond = ({ liText, arrayOfMenuChild }) => {
     )
 }
 
-export default MenuCompanentSecond
+export default MenuCompanentSecond 

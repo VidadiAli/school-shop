@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import axios from 'axios'
+import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '../images/mainImages/logo.png'
 import { menu } from '../Data/baza';
 import MenuCompanentFirst from './MenuCompanentFirst';
 
 const MenuCompanent = () => {
 
+    const navigate = useNavigate();
+
+    const callNavigate = (e) => {
+        navigate(`/school-shop/${e.linkOfElement}`)
+    }
+
     return (
         <nav>
-            <a>
-                <img src={logo} alt="logo" />
+            <a href='/school-shop/'>
+                <img src={logo} alt="logo" className='logo' />
             </a>
             <ul>
                 <li>
@@ -22,7 +27,7 @@ const MenuCompanent = () => {
                 {
                     menu && menu.map((e) => {
                         return < li key={e.id} >
-                            <NavLink to={'/school-shop/'}>{e.nameOfElement}</NavLink>
+                            <a onClick={() => callNavigate(e)}>{e.nameOfElement}</a>
                             <MenuCompanentFirst menuObject={e} />
                         </li>
                     })

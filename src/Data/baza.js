@@ -4,31 +4,31 @@ export const menu = [
     "nameOfElement": "Dərs Ləvazimatları",
     "iconOfElement": "bx bx-book",
     "jsonFile": "Levazimatlar",
-    "caroselCover": "images/carosel1.jpg",
-    "linkOfElement": "ders-levazimatlari.html"
+    "caroselCover": "../images/mainImages/carosel1.jpg",
+    "linkOfElement": "ders-levazimatlari"
   },
   {
     "id": "2",
     "nameOfElement": "Suvenerlər",
     "iconOfElement": "bx bxs-cookie",
     "jsonFile": "Suvenerler",
-    "caroselCover": "images/carosel2.jpg",
-    "linkOfElement": "suvenerler.html"
+    "caroselCover": "../images/mainImages/carosel2.jpg",
+    "linkOfElement": "suvenerler"
   },
   {
     "id": "3",
     "nameOfElement": "Ofis Ləvazimatları",
     "iconOfElement": "bx bxs-devices",
     "jsonFile": "Ofis",
-    "caroselCover": "images/carosel3.jpg",
-    "linkOfElement": "ofis-levazimatlari.html"
+    "caroselCover": "images/mainImages/carosel3.jpg",
+    "linkOfElement": "../ofis-levazimatlari"
   },
   {
     "id": "4",
     "nameOfElement": "Digər",
     "iconOfElement": "bx bx-plus-medical",
     "jsonFile": "Diger",
-    "caroselCover": "images/carosel4.jpg",
-    "linkOfElement": "diger.html"
+    "caroselCover": "../images/mainImages/carosel4.jpg",
+    "linkOfElement": "diger"
   }
 ]

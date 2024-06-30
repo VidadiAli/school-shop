@@ -41,6 +41,7 @@
     background-color: #044075;
     color: white;
     padding: 0 20px;
+    cursor: pointer;
 }
 
 .main-section>header>nav>ul>li>a {
@@ -108,12 +109,14 @@
     width: 100%;
     padding: 10px;
     display: block;
+    cursor: pointer;
 }
 
 .main-section>header>nav>.logo {
     display: flex;
     height: 100%;
     width: auto;
+    cursor: pointer;
 }
 
 .main-section>header>nav>.logo>img {

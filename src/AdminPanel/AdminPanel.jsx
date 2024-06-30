@@ -108,12 +108,13 @@ const AdminPanel = () => {
 
 
     const callMenuSend = async () => {
-        if (imageUrl != 'undefined') {
+        if (imageUrl != 'undefined' && imageUrl != '') {
             const menuSection = document.getElementById('section'), menuClass = document.getElementById('class'), menuElementName = document.getElementById('nameOfO'), menuPrice = document.getElementById('price'), menuCount = document.getElementById('count');
 
             if (menuSection.value.trim() != '' && menuClass.value.trim() != '' && menuElementName.value.trim() != '' && menuPrice.value.trim() != '' && menuCount.value.trim() != '') {
                 const element1 = {
                     "id": imageUrl.slice(imageUrl.length - 36, imageUrl.length),
+                    "mainSection": jsonUrl,
                     "bolum": menuSection.value,
                     "sinif": menuClass.value,
                     "elementinAdi": menuElementName.value,
@@ -122,9 +123,12 @@ const AdminPanel = () => {
                     "elementinSayi": menuCount.value
                 }
 
+
                 console.log(element1)
                 await axios.post(`${mainData}create${jsonUrl}`, element1);
                 setSelectClass('');
+                setImageUrl('');
+                menuSection.value = '', menuClass.value = '', menuElementName.value = '', menuPrice.value = '', menuCount.value = ''
             }
             else {
                 alert("Məlumatları tam doldurun!");
