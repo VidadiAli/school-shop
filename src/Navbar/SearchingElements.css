@@ -1,0 +1,10 @@
+.search-area {
+    position: absolute;
+    top: 135px;
+    left: 15%;
+    z-index: 10000000;
+    background-color: rgb(220, 220, 220);
+    width: 70%;
+    height: auto;
+    padding: 20px;
+}

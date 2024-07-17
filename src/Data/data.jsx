@@ -1,0 +1,1 @@
+export const mainData = "https://us-central1-api-school-shop.cloudfunctions.net/app/";

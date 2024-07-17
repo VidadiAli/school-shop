@@ -1,0 +1,84 @@
+.main-page>.first-element {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.main-page>.first-element>div {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    transition: 1s;
+}
+
+.main-page>.first-element>div:nth-child(3) {
+    right: 0%;
+}
+
+.main-page>.first-element>div>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.main-page>.first-element>div>div {
+    width: 100%;
+    height: 100%;
+    padding-left: 15%;
+    background-color: rgba(0, 0, 0, .35);
+    z-index: 1000000;
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    gap: 15px;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.main-page>.first-element>div>div>h2 {
+    color: white;
+    font-weight: 900;
+    font-size: 5rem;
+    grid-column: 3 span;
+    display: flex;
+    align-self: flex-end;
+    text-transform: capitalize;
+}
+
+.main-page>.first-element>div>div>i {
+    color: yellow;
+    border: 2px solid yellow;
+    font-size: 2.7rem;
+    width: 90px;
+    height: 90px;
+    font-weight: 800;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 0, .2);
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-page>.first-element>div>div>a {
+    background-color: var(--bgColor1);
+    height: 70px;
+    margin-top: 10px;
+    border-radius: 8px;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+}
