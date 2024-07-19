@@ -4,7 +4,7 @@ import { mainData } from '../Data/data'
 import MenuCompanentSecond from './MenuCompanentSecond';
 
 
-const MenuCompanentFirst = ({ menuObject }) => {
+const MenuCompanentFirst = ({ menuObject, setComeGo }) => {
 
     const [arrayOfMenuChild, setArrayOfMenuChild] = useState([]);
 
@@ -26,7 +26,7 @@ const MenuCompanentFirst = ({ menuObject }) => {
                 arrayOfMenuChild && arrayOfMenuChild.map((e) => {
                     if (!pushBolum.includes(e.bolum)) {
                         pushBolum.push(e.bolum);
-                        return < MenuCompanentSecond key={e.id} liText={e.bolum} arrayOfMenuChild={arrayOfMenuChild} />
+                        return < MenuCompanentSecond key={e.id} liText={e.bolum} arrayOfMenuChild={arrayOfMenuChild} setComeGo={setComeGo} />
                     }
                 })
             }

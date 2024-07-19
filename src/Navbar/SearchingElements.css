@@ -7,12 +7,18 @@
     width: 70%;
     height: auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-area>.main-area {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
 
-.search-area>div {
+.search-area>.main-area>div {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -21,13 +27,24 @@
     background-color: rgb(235, 235, 235);
 }
 
-.search-area>div>img {
+.search-area>.main-area>div>img {
     width: 100%;
 }
 
+.search-area>.close-area {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
 
-@media(max-width: 600px){
-    .search-area{
+.search-area>.close-area>span {
+    color: red;
+    font-style: italic;
+    cursor: pointer;
+}
+
+@media(max-width: 600px) {
+    .search-area {
         top: 145px;
         width: 90%;
         left: 5%;

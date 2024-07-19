@@ -43,7 +43,7 @@ const MenuCompanent = () => {
                     menu && menu.map((e) => {
                         return < li key={e.id} >
                             <a onClick={() => callNavigate(e)}>{e.nameOfElement}</a>
-                            <MenuCompanentFirst menuObject={e} />
+                            <MenuCompanentFirst menuObject={e} setComeGo={setComeGo} />
                         </li>
                     })
                 }

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-const MenuCompanentSecond = ({ liText, arrayOfMenuChild }) => {
+const MenuCompanentSecond = ({ liText, arrayOfMenuChild, setComeGo }) => {
 
     let pushSinif = [];
 
@@ -9,6 +9,8 @@ const MenuCompanentSecond = ({ liText, arrayOfMenuChild }) => {
 
     const callNavigate = (e) => {
         navigate(`/school-shop/${e.bolum}/${e.sinif}`);
+
+        setComeGo('');
     }
 
     return (
