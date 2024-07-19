@@ -12,6 +12,7 @@ const SearchCompanent = () => {
 
     const [search, setSearch] = useState(false);
     const [searchArray, setSearchArray] = useState([]);
+    const [searchedArray, setSearchedArray] = useState([])
 
     const callData = async (jsonFile) => {
         try {
@@ -29,75 +30,43 @@ const SearchCompanent = () => {
         });
     }, []); // Asılılıqlar siyahısına bolum və sinif əlavə olundu
 
+    const searchingElements = ()=>{
+        let searchList = [];
+        const inputValue = document.getElementsByClassName('search-box')[0];
+        searchArray.forEach((e)=>{
+            if(e.elementinAdi.toUpperCase().includes(inputValue.value.toUpperCase())){
+                if(!searchList.includes(e.elementinAdi)){
+                    searchList.push(e.elementinAdi);
 
-    const searchArea = document.getElementsByClassName('search-area')[0], searchBox = document.getElementsByClassName('search-box')[0];
-
-    let arrayOfSearch = [];
-    const searchingElements = () => {
-        setSearch(true);
-        let countOfSearchElement = 0;
-        arrayOfSearch = [];
-        searchArray.forEach((e) => {
-            if ((((e.elementinAdi + e.sinif).toUpperCase()).trim()).includes((searchBox.value.toUpperCase()).trim())) {
-                if (!arrayOfSearch.includes((e.elementinAdi + e.sinif).toUpperCase())) {
-                    const searchElementBox = document.createElement('div');
-
-                    //console.log((e.elementinAdi + e.sinif).toUpperCase() + " * " + searchBox.value.toUpperCase());
-                    const searchBoxCover = document.createElement('img');
-                    searchBoxCover.setAttribute('src', e.elementinShekli);
-                    const searchBoxHead = document.createElement('h3');
-                    searchBoxHead.textContent = e.elementinAdi;
-                    const searchBoxClass = document.createElement('span');
-                    searchBoxClass.textContent = e.sinif;
-
-                    const nowBuy = document.createElement('button');
-                    nowBuy.textContent = 'indi sifarish et'
-
-                    searchElementBox.append(searchBoxCover, searchBoxHead, searchBoxClass, nowBuy);
-
-                    searchArea.append(searchElementBox);
-
-                    arrayOfSearch.push((e.elementinAdi + e.sinif).toUpperCase());
-
-                    countOfSearchElement++;
+                    searchedArray.push(e);
+                    setSearchedArray(searchedArray);
+                    setSearch(true);
                 }
             }
-        });
-
-        if (countOfSearchElement === 0) {
-
-            const noElement = document.createElement('span');
-            noElement.textContent = 'Axtardığınız obyekt stokda yoxdur :(';
-            const closeArea = document.createElement('i');
-            closeArea.className = 'bx bx-x';
-
-            searchArea.append(noElement, closeArea);
-
-            closeArea.addEventListener('click', () => {
-                searchArea.remove();
-            });
-
-        }
+            else{
+                setSearchedArray([]);
+                setSearch(false)
+            }
+        })
     }
 
-
     return (
-        <div className='sosial-menu'>
-            <form>
+        <div className='sosial-menu' >
+            <form >
                 <input type="search" placeholder='Bir şey axtar' onKeyDown={searchingElements} className='search-box' />
                 <div>
                     <CiSearch />
                 </div>
             </form>
             {
-                search ? <SearchingElements /> : ''
+                search ? <SearchingElements  searchedArray = {searchedArray} setSearch = {setSearch}/> : ''
             }
             <div className="sosial">
                 <a href="tel:+994774501546"><MdOutlineLocalPhone /></a>
                 <a href="https://www.instagram.com/ramana.kitab.evi/"><FaInstagram /></a>
                 <a href=""><FaRegEnvelope /></a>
                 <a href="https://maps.app.goo.gl/5YADvB2rxQuTVuEWA" target='_blank'>
-                    <i class='bx bxs-map'></i>
+                    <i className='bx bxs-map'></i>
                 </a>
             </div>
         </div >

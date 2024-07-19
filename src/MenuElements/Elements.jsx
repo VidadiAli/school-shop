@@ -30,7 +30,7 @@ const Elements = () => {
                         <img src={e.elementinShekli} alt={e.elementinShekli} />
                         <h4>{e.elementinAdi}</h4>
                         <span>{e.elementinQiymeti} ₼</span>
-                        <button>İndi sifariş et</button>
+                        <a href="https://wa.me/+994774501546" target='_blank' rel="noopener noreferrer">Sifariş et</a>
                     </div>
                 );
             })}

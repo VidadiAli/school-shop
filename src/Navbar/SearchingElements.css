@@ -1,10 +1,35 @@
 .search-area {
     position: absolute;
-    top: 135px;
+    top: 130px;
     left: 15%;
-    z-index: 10000000;
+    z-index: 100000;
     background-color: rgb(220, 220, 220);
     width: 70%;
     height: auto;
     padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.search-area>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    padding: 8px;
+    background-color: rgb(235, 235, 235);
+}
+
+.search-area>div>img {
+    width: 100%;
+}
+
+
+@media(max-width: 600px){
+    .search-area{
+        top: 145px;
+        width: 90%;
+        left: 5%;
+    }
 }

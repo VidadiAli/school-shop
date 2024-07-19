@@ -52,3 +52,28 @@
     border-radius: 8px;
     font-weight: 700;
 }
+
+
+
+@media(max-width: 1050px) {
+    .my-class {
+        padding: 30px 10px;
+    }
+}
+
+
+@media(max-width: 750px) {
+    .my-class {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .my-class>div>a {
+        padding: 12px 10px;
+    }
+}
+
+@media(max-width: 500px) {
+    .my-class {
+        grid-template-columns: 1fr 1fr;
+    }
+}
