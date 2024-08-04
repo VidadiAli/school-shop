@@ -11,7 +11,7 @@ const MyClass = () => {
 
     const callData = async (jsonFile) => {
         try {
-            const mainArray = (await axios.get(`${mainData}read${jsonFile}`)).data;
+            const mainArray = (await axios.get(`${mainData}getbook${jsonFile}`)).data;
             setNavigateArray(prevArray => [...prevArray, ...mainArray]);
         } catch (error) {
             console.error("Error fetching data:", error);

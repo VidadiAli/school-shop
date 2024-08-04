@@ -24,7 +24,7 @@ const HomeElements = () => {
     useEffect(() => {
         const fetchData = async () => {
             const results = await Promise.all(
-                menu.map(e => getData(`${mainData}read${e.jsonFile}`))
+                menu.map(e => getData(`${mainData}getbook${e.jsonFile}`))
             );
             const mergedData = results.flat();
             setArrayOfMenuChild(mergedData);

@@ -29,8 +29,8 @@ const MenuCompanent = () => {
 
     return (
         <nav>
-            <a href='/school-shop/'>
-                <img src={logo} alt="logo" className='logo' />
+            <a href='/school-shop/' className='logo'>
+                <img src={logo} alt="logo" />
             </a>
             <ul className={`${comeGo}`}>
                 <li>

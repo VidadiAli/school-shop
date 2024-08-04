@@ -17,12 +17,11 @@ const AdminPanel = () => {
     const [password, setPassword] = useState('')
     const [removeForm, setRemoveForm] = useState('');
     const [removeCreateForm, setCreateRemoveForm] = useState('');
-    const [selectClass, setSelectClass] = useState('');
+    const [selectClass, setSelectClass] = useState('e');
     const [addAdminArea, setAddAdminArea] = useState('')
     //const [selectElement, setSelectElement] = useState('Dərs Ləvazimatları');
     const [jsonUrl, setJsonUrl] = useState('Levazimatlar');
     const [imageUrl, setImageUrl] = useState();
-
 
     const callJson = (deyer) => {
         menu.forEach((element) => {
@@ -37,13 +36,20 @@ const AdminPanel = () => {
 
     const callAccount = async () => {
         const accountElements = (await axios.get(`${mainData}readAccount`)).data;
+        document.getElementsByClassName('waiting-open')[0].classList.add('waiting-stop');
+
         if (accountElements.length != 0) {
             setUser(accountElements[0].user);
             setPassword(accountElements[0].password);
-            setCreateRemoveForm('form-remove');
+            if (document.getElementById('adminArea').getAttribute('class') !== "admin-area-remove admin-area") {
+                setCreateRemoveForm('');
+                setRemoveForm('form-remove');
+            }
+
         }
         else {
-            setRemoveForm('form-remove');
+            setCreateRemoveForm('form-remove');
+            setRemoveForm('');
         }
     }
 
@@ -68,28 +74,13 @@ const AdminPanel = () => {
             await axios.post(`${mainData}createAccount`, updateElement);
 
             alert('Hesabınız uğurlar yaradıldı');
-            setCreateRemoveForm('form-remove');
-            setRemoveForm('');
+            setCreateRemoveForm('');
+            setRemoveForm('form-remove');
             userId.value = ''
             passwordId.value = ''
         }
     }
 
-
-    const enterAccount = () => {
-
-        const userId = document.getElementById('userId'),
-            passwordId = document.getElementById('passwordId');
-
-        if (user === userId.value.trim() && password === passwordId.value.trim()) {
-            setAddAdminArea('admin-area');
-            setRemoveForm('form-remove');
-        }
-        else {
-            alert('Məlumatlar doğru deyil');
-            return;
-        }
-    }
 
 
     const addElement = () => {
@@ -125,7 +116,7 @@ const AdminPanel = () => {
 
 
                 console.log(element1)
-                await axios.post(`${mainData}create${jsonUrl}`, element1);
+                await axios.post(`${mainData}postbook${jsonUrl}`, element1);
                 setSelectClass('');
                 setImageUrl('');
                 menuSection.value = '', menuClass.value = '', menuElementName.value = '', menuPrice.value = '', menuCount.value = ''
@@ -193,9 +184,26 @@ const AdminPanel = () => {
     }
 
 
+    const enterAccount = () => {
+
+        const userId = document.getElementById('userId'),
+            passwordId = document.getElementById('passwordId');
+
+        if (user === userId.value.trim() && password === passwordId.value.trim()) {
+            setAddAdminArea('admin-area');
+            setRemoveForm('');
+        }
+        else {
+            alert('Məlumatlar doğru deyil');
+            return;
+        }
+    }
 
     return (
         <div className='admin-panel'>
+            <div className={`waiting-open`}>
+                <button>Bir az gözləyin...</button>
+            </div>
             <form className={`${removeForm}`}>
                 <input type="text" placeholder='user: ' id='userId' />
                 <input type="password" placeholder='password: ' id='passwordId' />
@@ -208,7 +216,7 @@ const AdminPanel = () => {
                 <input type="button" value="user və parol yarat" onClick={createAccount} />
             </form>
 
-            <div className={`admin-area-remove ${addAdminArea}`} >
+            <div className={`admin-area-remove ${addAdminArea}`} id='adminArea' >
                 <h2>Xoş Gəldin: Elton Cabbarlı</h2>
                 <div>
                     <button onClick={addElement}>Element Əlavə et</button>

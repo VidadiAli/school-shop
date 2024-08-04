@@ -5,6 +5,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.admin-panel>.waiting-open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 157, 255, .5);
+}
+
+.admin-panel>.waiting-open>button {
+    padding: 20px 30px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    color: rgb(0, 157, 255);
+    background-color: white;
+    font-weight: 700;
+}
+
+.admin-panel>.waiting-stop {
+    display: none !important;
 }
 
 .admin-panel>form {
@@ -13,13 +41,13 @@
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 0 10px lightgray;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 20px;
 }
 
 .admin-panel>.form-remove {
-    display: none;
+    display: flex;
 }
 
 .admin-panel>form>input {

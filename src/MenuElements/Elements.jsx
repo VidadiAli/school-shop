@@ -10,7 +10,7 @@ const Elements = () => {
     const { linkOfElement } = useParams();
 
     const callData = async (url) => {
-        const data = await (await axios.get(`${mainData}read${url}`)).data;
+        const data = await (await axios.get(`${mainData}getbook${url}`)).data;
         setMainArray(data);
     };
 

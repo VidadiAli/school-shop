@@ -16,7 +16,7 @@ const SearchCompanent = () => {
 
     const callData = async (jsonFile) => {
         try {
-            const mainArray = (await axios.get(`${mainData}read${jsonFile}`)).data;
+            const mainArray = (await axios.get(`${mainData}getbook${jsonFile}`)).data;
             setSearchArray(prevArray => [...prevArray, ...mainArray]);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -63,9 +63,9 @@ const SearchCompanent = () => {
             }
             <div className="sosial">
                 <a href="tel:+994774501546"><MdOutlineLocalPhone /></a>
-                <a href="https://www.instagram.com/ramana.kitab.evi/"><FaInstagram /></a>
-                <a href=""><FaRegEnvelope /></a>
-                <a href="https://maps.app.goo.gl/5YADvB2rxQuTVuEWA" target='_blank'>
+                <a href="https://www.instagram.com/ramana.kitab.evi/" target='_blank'><FaInstagram /></a>
+                <a href="mailto:elton.cabbarli22@gmail.com"><FaRegEnvelope /></a>
+                <a href="https://www.google.com/maps?q=40.4782826,50.0134644&z=17&hl=en" target='_blank'>
                     <i className='bx bxs-map'></i>
                 </a>
             </div>

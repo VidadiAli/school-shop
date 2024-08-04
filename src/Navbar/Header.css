@@ -284,7 +284,11 @@
         font-size: 1rem;
     }
 
-    .main-section>header>nav>ul{
+    .main-section>header>nav>ul {
         top: 145px;
+    }
+
+    .main-section>header>nav>.logo {
+        height: 80%;
     }
 }
