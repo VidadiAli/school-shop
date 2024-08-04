@@ -8,7 +8,7 @@ const MenuCompanentSecond = ({ liText, arrayOfMenuChild, setComeGo }) => {
     const navigate = useNavigate()
 
     const callNavigate = (e) => {
-        navigate(`/school-shop/${e.bolum}/${e.sinif}`);
+        navigate(`/${e.bolum}/${e.sinif}`);
 
         setComeGo('');
     }

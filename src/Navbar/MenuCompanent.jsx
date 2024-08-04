@@ -13,7 +13,7 @@ const MenuCompanent = () => {
 
     const callNavigate = (e) => {
         if (window.innerWidth >= 1050) {
-            navigate(`/school-shop/${e.linkOfElement}`);
+            navigate(`/${e.linkOfElement}`);
         }
     }
 
@@ -29,15 +29,15 @@ const MenuCompanent = () => {
 
     return (
         <nav>
-            <a href='/school-shop/' className='logo'>
+            <a href='/' className='logo'>
                 <img src={logo} alt="logo" />
             </a>
             <ul className={`${comeGo}`}>
                 <li>
-                    <NavLink to='/school-shop/'>Ana Səhifə</NavLink>
+                    <NavLink to='/'>Ana Səhifə</NavLink>
                 </li>
                 <li style={{ display: 'none' }}>
-                    <NavLink to='/school-shop/Admin'>Admin</NavLink>
+                    <NavLink to='/Admin'>Admin</NavLink>
                 </li>
                 {
                     menu && menu.map((e) => {

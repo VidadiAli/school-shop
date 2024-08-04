@@ -7,7 +7,7 @@ const SearchingElements = ({ searchedArray, setSearch }) => {
     const navigate = useNavigate();
 
     const goElement = (e) => {
-        navigate(`/school-shop/${e.bolum}/${e.sinif}`);
+        navigate(`/${e.bolum}/${e.sinif}`);
         setSearch(false);
     }
 
