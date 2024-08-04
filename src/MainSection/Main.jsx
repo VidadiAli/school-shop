@@ -9,10 +9,10 @@ const Main = () => {
     return (
         <main>
             <Routes>
-                <Route path='/school-shop/' element={<Home />} />
-                <Route path='/school-shop/:bolum/:sinif' element={<MyClass />} />
-                <Route path='/school-shop/:linkOfElement' element={<Elements />} />
-                <Route path='/school-shop/Admin' element={<AdminPanel />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/:bolum/:sinif' element={<MyClass />} />
+                <Route path='/:linkOfElement' element={<Elements />} />
+                <Route path='/Admin' element={<AdminPanel />} />
             </Routes>
         </main>
     )

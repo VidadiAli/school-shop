@@ -18,7 +18,7 @@ const HomeElements = () => {
 
 
     const callNavigate = (e) => {
-        navigate(`/school-shop/${e.linkOfElement}`)
+        navigate(`/${e.linkOfElement}`)
     }
 
     useEffect(() => {
