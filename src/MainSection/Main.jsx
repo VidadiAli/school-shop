@@ -1,7 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from '../MenuElements/Home'
-import AdminPanel from '../AdminPanel/AdminPanel'
 import MyClass from '../MenuElements/MyClass'
 import Elements from '../MenuElements/Elements'
 
