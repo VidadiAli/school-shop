@@ -36,9 +36,6 @@ const MenuCompanent = () => {
                 <li>
                     <NavLink to='/'>Ana Səhifə</NavLink>
                 </li>
-                <li style={{ display: 'none' }}>
-                    <NavLink to='/Admin'>Admin</NavLink>
-                </li>
                 {
                     menu && menu.map((e) => {
                         return < li key={e.id} >

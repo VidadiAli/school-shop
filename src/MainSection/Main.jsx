@@ -12,7 +12,6 @@ const Main = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/:bolum/:sinif' element={<MyClass />} />
                 <Route path='/:linkOfElement' element={<Elements />} />
-                <Route path='/Admin' element={<AdminPanel />} />
             </Routes>
         </main>
     )
