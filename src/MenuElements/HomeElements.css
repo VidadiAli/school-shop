@@ -107,7 +107,7 @@
     object-fit: cover;
 }
 
-.third-element>div>.elements-of-boxes>div>button {
+.third-element>div>.elements-of-boxes>div>a {
     padding: 12px 0;
     border: none;
     outline: none;
@@ -117,9 +117,10 @@
     cursor: pointer;
     transition: .5s;
     font-size: 1rem;
+    text-align: center;
 }
 
-.third-element>div>.elements-of-boxes>div>button:hover {
+.third-element>div>.elements-of-boxes>div>a:hover {
     background-color: rgb(2, 47, 90);
 }
 
