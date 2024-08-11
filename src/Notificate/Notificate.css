@@ -1,0 +1,38 @@
+.notificate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: 1000000000;
+}
+
+.notificate>button {
+    border: none;
+    outline: none;
+    padding: 20px 30px;
+    color: white;
+    animation-name: btn;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-start;
+    animation-duration: .5s;
+}
+
+@keyframes btn {
+    from {
+        background-color: rgb(10, 93, 126);
+    }
+
+    to {
+        background-color: rgb(9, 50, 66);
+    }
+}
+
+.notificate-off {
+    display: none !important;
+}

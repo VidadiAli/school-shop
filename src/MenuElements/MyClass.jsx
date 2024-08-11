@@ -4,15 +4,19 @@ import { useParams } from 'react-router-dom';
 import { mainData } from '../Data/data';
 import { menu } from '../Data/baza';
 import './MyClass.css';
+import Notificate from '../Notificate/Notificate';
 
 const MyClass = () => {
     const [navigateArray, setNavigateArray] = useState([]);
+    const [notificateOnOff, setNotificateOnOff] = useState('');
+
     const { bolum, sinif } = useParams();
 
     const callData = async (jsonFile) => {
         try {
             const mainArray = (await axios.get(`${mainData}getbook${jsonFile}`)).data;
             setNavigateArray(prevArray => [...prevArray, ...mainArray]);
+            setNotificateOnOff('notificate-off');
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -27,6 +31,9 @@ const MyClass = () => {
 
     return (
         <div className='my-class'>
+            
+            <Notificate notifiClass={notificateOnOff} />
+
             {navigateArray.map((e) => {
                 if (e.bolum === bolum && e.sinif == sinif) {
                     return (

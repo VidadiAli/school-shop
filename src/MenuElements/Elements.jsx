@@ -4,14 +4,19 @@ import { useParams } from 'react-router-dom';
 import { menu } from '../Data/baza';
 import { mainData } from '../Data/data';
 import './Elements.css'
+import Notificate from '../Notificate/Notificate';
 
 const Elements = () => {
     const [mainArray, setMainArray] = useState([]);
+    const [notificateOnOff, setNotificateOnOff] = useState('');
+
     const { linkOfElement } = useParams();
 
     const callData = async (url) => {
+
         const data = await (await axios.get(`${mainData}getbook${url}`)).data;
         setMainArray(data);
+        setNotificateOnOff('notificate-off');
     };
 
     useEffect(() => {
@@ -24,6 +29,9 @@ const Elements = () => {
 
     return (
         <div className='elements'>
+
+            <Notificate notifiClass={notificateOnOff} />
+
             {mainArray.map((e) => {
                 return (
                     <div key={e.id}>

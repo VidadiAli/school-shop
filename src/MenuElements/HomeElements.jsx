@@ -5,16 +5,21 @@ import { mainData } from '../Data/data';
 import './HomeElements.css'
 import back from '../images/mainImages/back.jpg'
 import { NavLink, useNavigate } from 'react-router-dom';
+import Notificate from '../Notificate/Notificate';
 
 const HomeElements = () => {
     const navigate = useNavigate();
 
     const [arrayOfMenuChild, setArrayOfMenuChild] = useState([]);
     const [sliceNumber, setSliceNumber] = useState(5);
+    const [notificateOnOff, setNotificateOnOff] = useState('')
 
     const getData = async (url) => {
+
         const response = await axios.get(url);
+        setNotificateOnOff('notificate-off');
         return response.data;
+
     }
 
 
@@ -44,7 +49,9 @@ const HomeElements = () => {
 
     return (
         <div className='third-element'>
-            {/* <img src={back} alt={back} className='back-fone' /> */}
+
+            <Notificate notifiClass={notificateOnOff} />
+
             {menu.map((e) => {
                 return (
                     <div key={e.id} className='elements-back'>
