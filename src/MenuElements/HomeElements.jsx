@@ -4,7 +4,7 @@ import { menu } from '../Data/baza';
 import { mainData } from '../Data/data';
 import './HomeElements.css'
 import back from '../images/mainImages/back.jpg'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Notificate from '../Notificate/Notificate';
 
 const HomeElements = () => {
@@ -12,12 +12,14 @@ const HomeElements = () => {
 
     const [arrayOfMenuChild, setArrayOfMenuChild] = useState([]);
     const [sliceNumber, setSliceNumber] = useState(5);
-    const [notificateOnOff, setNotificateOnOff] = useState('')
+    const [notificateOnOff, setNotificateOnOff] = useState('');
+
+
+    let countOfRange = 0;
 
     const getData = async (url) => {
 
         const response = await axios.get(url);
-        setNotificateOnOff('notificate-off');
         return response.data;
 
     }
@@ -33,10 +35,13 @@ const HomeElements = () => {
                 menu.map(e => getData(`${mainData}getbook${e.jsonFile}`))
             );
             const mergedData = results.flat();
+
             setArrayOfMenuChild(mergedData);
+            setNotificateOnOff('notificate-off');
         };
 
         fetchData();
+
     }, [menu, mainData]);
 
 
@@ -53,6 +58,7 @@ const HomeElements = () => {
             <Notificate notifiClass={notificateOnOff} />
 
             {menu.map((e) => {
+                countOfRange = 0;
                 return (
                     <div key={e.id} className='elements-back'>
                         <div className='box-of-head'>
@@ -61,8 +67,9 @@ const HomeElements = () => {
                         </div>
 
                         <div className='elements-of-boxes'>
-                            {arrayOfMenuChild.slice(0, sliceNumber).map((f) => {
-                                if (e.jsonFile === f.mainSection) {
+                            {arrayOfMenuChild.map((f) => {
+                                if (e.jsonFile === f.mainSection && countOfRange < sliceNumber) {
+                                    countOfRange++;
                                     return (
                                         <div key={f.id} className='box'>
                                             <small>Çatdırılma var</small>
