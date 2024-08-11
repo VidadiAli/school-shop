@@ -74,22 +74,22 @@
 }
 
 .third-element>div>.elements-of-boxes {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    gap: 15px;
 }
 
 .third-element>div>.elements-of-boxes>div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 15px;
+    gap: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgb(193, 193, 193);
     padding: 20px 10px;
     background-color: rgba(255, 255, 255, .3);
     backdrop-filter: blur(2px);
     position: relative;
+    width: calc(100% / 5);
 }
 
 .third-element>div>.elements-of-boxes>div>small {
@@ -102,7 +102,7 @@
 }
 
 .third-element>div>.elements-of-boxes>div>img {
-    width: 77%;
+    width: 95%;
     margin: 5px auto;
     object-fit: cover;
 }
@@ -135,8 +135,11 @@
     }
 
     .third-element>div>.elements-of-boxes {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         font-size: 80%;
+    }
+
+    .third-element>div>.elements-of-boxes>div {
+        width: calc(100% / 4);
     }
 
     .third-element>div>.elements-of-boxes>div>small {
@@ -159,7 +162,6 @@
     }
 
     .third-element>div>.elements-of-boxes {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 15px;
     }
 }
@@ -196,13 +198,13 @@
     }
 
     .third-element>div>.elements-of-boxes {
-        grid-template-columns: 1fr 1fr 1fr;
         gap: 10px;
     }
 
     .third-element>div>.elements-of-boxes>div {
         padding: 10px 5px;
         font-size: 87%;
+        width: calc(100% / 3);
     }
 
     .third-element>div>.elements-of-boxes>div>small {

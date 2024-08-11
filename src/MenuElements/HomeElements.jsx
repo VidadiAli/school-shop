@@ -10,6 +10,7 @@ const HomeElements = () => {
     const navigate = useNavigate();
 
     const [arrayOfMenuChild, setArrayOfMenuChild] = useState([]);
+    const [sliceNumber, setSliceNumber] = useState(5);
 
     const getData = async (url) => {
         const response = await axios.get(url);
@@ -34,10 +35,11 @@ const HomeElements = () => {
     }, [menu, mainData]);
 
 
-    // let elementCount = 2;
-    // if (window.innerWidth < 1300 && innerWidth >= 850) elementCount = 5
-    // else if (window.innerWidth < 850 && innerWidth >= 600) elementCount = 4
-    // else if (window.innerWidth < 600) elementCount = 3;
+
+    useEffect(() => {
+        if (window.innerWidth < 1300 && innerWidth >= 600) setSliceNumber(4);
+        else if (window.innerWidth < 600) setSliceNumber(3);
+    }, [])
 
 
     return (
@@ -45,17 +47,17 @@ const HomeElements = () => {
             {/* <img src={back} alt={back} className='back-fone' /> */}
             {menu.map((e) => {
                 return (
-                    <div key={e.id}>
+                    <div key={e.id} className='elements-back'>
                         <div className='box-of-head'>
                             <h2>{e.nameOfElement}</h2>
                             <a onClick={() => callNavigate(e)} style={{ cursor: 'pointer' }}>Hamısına Bax ...</a>
                         </div>
 
                         <div className='elements-of-boxes'>
-                            {arrayOfMenuChild.map((f) => {
+                            {arrayOfMenuChild.slice(0, sliceNumber).map((f) => {
                                 if (e.jsonFile === f.mainSection) {
                                     return (
-                                        <div key={f.id}>
+                                        <div key={f.id} className='box'>
                                             <small>Çatdırılma var</small>
                                             <img src={f.elementinShekli} alt={f.elementinShekli} />
                                             <h4>{f.elementinAdi}</h4>
