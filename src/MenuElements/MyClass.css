@@ -1,5 +1,4 @@
 .my-class {
-    display: flex;
     padding: 30px 20%;
     background-color: rgb(245, 245, 245);
     display: flex;
@@ -11,6 +10,7 @@
 .my-class>div {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
     background-color: rgb(228, 228, 228);
     border-radius: 10px;

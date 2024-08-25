@@ -62,7 +62,6 @@
     width: 220px;
     z-index: 1000;
     max-height: 400px;
-    overflow: auto;
 }
 
 .main-section>header>nav>ul>li>ul::-webkit-scrollbar {

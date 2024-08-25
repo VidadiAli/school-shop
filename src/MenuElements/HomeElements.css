@@ -75,6 +75,7 @@
 
 .third-element>div>.elements-of-boxes {
     display: flex;
+    justify-content: space-between;
     gap: 15px;
 }
 
@@ -210,7 +211,9 @@
     .third-element>div>.elements-of-boxes>div>small {
         left: 5px;
     }
-    .third-element>div>.elements-of-boxes>div>a{
+
+    .third-element>div>.elements-of-boxes>div>a {
         font-size: .7rem;
+        padding: 8px 0;
     }
 }
