@@ -63,18 +63,6 @@
     z-index: 1000;
 }
 
-.main-section>header>nav>ul>li>ul::-webkit-scrollbar {
-    width: 10px;
-}
-
-.main-section>header>nav>ul>li>ul::-webkit-scrollbar-thumb {
-    background-color: var(--bgColor2);
-}
-
-.main-section>header>nav>ul>li>ul::-webkit-scrollbar-track {
-    background-color: var(--bgColor1);
-}
-
 .main-section>header>nav>ul>li:hover>ul {
     display: flex;
 }
@@ -306,6 +294,18 @@
 
     .main-section>header>nav>ul>li>ul {
         max-height: 450px;
-        overflow: hidden;
+        overflow: auto;
+    }
+
+    .main-section>header>nav>ul>li>ul::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .main-section>header>nav>ul>li>ul::-webkit-scrollbar-thumb {
+        background-color: var(--bgColor2);
+    }
+
+    .main-section>header>nav>ul>li>ul::-webkit-scrollbar-track {
+        background-color: var(--bgColor1);
     }
 }
