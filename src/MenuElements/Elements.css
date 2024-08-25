@@ -52,6 +52,6 @@
 
 @media(max-width: 500px) {
     .elements>div {
-        width: calc((100% / 5) - 10px);
+        width: calc((100% / 3) - 10px);
     }
 }

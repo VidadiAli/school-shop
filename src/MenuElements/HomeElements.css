@@ -210,4 +210,7 @@
     .third-element>div>.elements-of-boxes>div>small {
         left: 5px;
     }
+    .third-element>div>.elements-of-boxes>div>a{
+        font-size: .7rem;
+    }
 }
