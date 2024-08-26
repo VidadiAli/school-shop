@@ -13,6 +13,11 @@ const Footer = () => {
                 </ul>
             </div>
 
+            <div className='third-box'>
+                <h1>Bir sualın varsa, çəkinmədən yaz!</h1>
+                <a href="https://wa.me/+994774501546" target='_blank' rel="noopener noreferrer"><FaWhatsapp className='wp-icon' /><span>WhatsApp xəttimiz</span></a>
+            </div>
+
             <div className='second-box'>
                 <h1>Haqqımızda</h1>
                 <div>
@@ -27,10 +32,6 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className='third-box'>
-                <h1>Bir sualın varsa, çəkinmədən yaz!</h1>
-                <a href="https://wa.me/+994774501546" target='_blank' rel="noopener noreferrer"><FaWhatsapp className='wp-icon' /><span>WhatsApp xəttimiz</span></a>
-            </div>
         </div>
     )
 }
