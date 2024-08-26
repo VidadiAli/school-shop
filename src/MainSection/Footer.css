@@ -1,0 +1,86 @@
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    background-color: var(--bgColor1);
+    gap: 40px;
+    padding: 40px;
+}
+
+.footer>.first-box,
+.second-box,
+.third-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer>.first-box>h1,
+.second-box>h1,
+.third-box>h1 {
+    color: white;
+}
+
+.footer>.first-box>ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer>.first-box>ul>li>a {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid white;
+    width: min-content;
+}
+
+.footer>.second-box>div {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer>.second-box>div>span {
+    font-style: italic;
+    background-color: rgba(0, 0, 0, .4);
+    padding: 5px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+.footer>.second-box>div>p {
+    padding: 10px 0;
+}
+
+.footer>.third-box>a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.footer>.third-box>a>.wp-icon {
+    color: lightgreen;
+    font-size: 2rem;
+}
+
+
+@media (max-width: 1050px) {
+    .footer {
+        grid-template-columns: 1fr 1fr;
+        padding: 40px 20px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        grid-template-columns: 1fr;
+        padding: 30px 10px;
+        gap: 50px;
+    }
+}
