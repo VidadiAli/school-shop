@@ -8,11 +8,11 @@ import { menu } from '../Data/baza';
 import { mainData } from '../Data/data';
 import axios from 'axios';
 
-const SearchCompanent = () => {
+const SearchComponent = () => {
 
     const [search, setSearch] = useState(false);
     const [searchArray, setSearchArray] = useState([]);
-    const [searchedArray, setSearchedArray] = useState([])
+    const [searchedArray, setSearchedArray] = useState([]);
 
     const callData = async (jsonFile) => {
         try {
@@ -21,45 +21,48 @@ const SearchCompanent = () => {
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    };
+    }
 
     useEffect(() => {
-        setSearchArray([])
+        setSearchArray([]);
         menu.forEach((e) => {
             callData(e.jsonFile);
         });
-    }, []); // Asılılıqlar siyahısına bolum və sinif əlavə olundu
+    }, []);
 
-    const searchingElements = ()=>{
+    const searchingElements = (e) => {
+        const inputValue = e.target.value;
         let searchList = [];
-        const inputValue = document.getElementsByClassName('search-box')[0];
-        searchArray.forEach((e)=>{
-            if(e.elementinAdi.toUpperCase().includes(inputValue.value.toUpperCase())){
-                if(!searchList.includes(e.elementinAdi)){
-                    searchList.push(e.elementinAdi);
+        let filteredArray = [];
 
-                    searchedArray.push(e);
-                    setSearchedArray(searchedArray);
-                    setSearch(true);
+        searchArray.forEach((element) => {
+            if (element.elementinAdi.toUpperCase().includes(inputValue.toUpperCase())) {
+                if (!searchList.includes(element.elementinAdi)) {
+                    searchList.push(element.elementinAdi);
+                    filteredArray.push(element);
                 }
             }
-            else{
-                setSearchedArray([]);
-                setSearch(false)
-            }
-        })
+        });
+
+        setSearchedArray(filteredArray);
+        setSearch(filteredArray.length > 0);
     }
 
     return (
-        <div className='sosial-menu' >
-            <form >
-                <input type="search" placeholder='Bir şey axtar' onKeyDown={searchingElements} className='search-box' />
+        <div className='sosial-menu'>
+            <form>
+                <input style={{ textTransform: 'uppercase' }}
+                    type="search"
+                    placeholder='Bir şey axtar'
+                    onChange={searchingElements} // onKeyDown yerine onChange kullandık
+                    className='search-box'
+                />
                 <div>
                     <CiSearch />
                 </div>
             </form>
             {
-                search ? <SearchingElements  searchedArray = {searchedArray} setSearch = {setSearch}/> : ''
+                search ? <SearchingElements searchedArray={searchedArray} setSearch={setSearch} /> : ''
             }
             <div className="sosial">
                 <a href="tel:+994774501546"><MdOutlineLocalPhone /></a>
@@ -69,8 +72,8 @@ const SearchCompanent = () => {
                     <i className='bx bxs-map'></i>
                 </a>
             </div>
-        </div >
-    )
+        </div>
+    );
 }
 
-export default SearchCompanent
+export default SearchComponent;

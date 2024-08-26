@@ -7,6 +7,7 @@ import MenuCompanentSecond from './MenuCompanentSecond';
 const MenuCompanentFirst = ({ menuObject, setComeGo }) => {
 
     const [arrayOfMenuChild, setArrayOfMenuChild] = useState([]);
+    const [secondUl, setSecondUl] = useState('');
 
     const getData = async (url) => {
         const bolum = (await axios.get(url)).data;
@@ -20,8 +21,15 @@ const MenuCompanentFirst = ({ menuObject, setComeGo }) => {
 
     let pushBolum = [];
 
+
+    useEffect(() => {
+        if (pushBolum.length > 10 && window.innerWidth > 1050) {
+            setSecondUl('second-ul');
+        }
+    }, [pushBolum]);
+
     return (
-        <ul>
+        <ul className={`${secondUl}`}>
             {
                 arrayOfMenuChild && arrayOfMenuChild.map((e) => {
                     if (!pushBolum.includes(e.bolum)) {
