@@ -74,6 +74,7 @@
         grid-template-columns: 1fr 1fr;
         padding: 40px 20px;
         gap: 20px;
+        font-size: 80%;
     }
 }
 
@@ -82,5 +83,6 @@
         grid-template-columns: 1fr;
         padding: 30px 10px;
         gap: 50px;
+        font-size: 65%;
     }
 }
