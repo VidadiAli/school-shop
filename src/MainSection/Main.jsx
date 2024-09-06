@@ -7,7 +7,7 @@ import Elements from '../MenuElements/Elements'
 const Main = () => {
     return (
         <main>
-            <Routes basename="/school-shop">
+            <Routes basename="/">
                 <Route path='/' element={<Home />} />
                 <Route path='/:bolum/:sinif' element={<MyClass />} />
                 <Route path='/:linkOfElement' element={<Elements />} />
